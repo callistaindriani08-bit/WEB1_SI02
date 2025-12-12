@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gabungan Semua Contoh Kode</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        /* Beberapa style dasar untuk pemisahan */
+        .separator {
+            border-top: 2px solid #ccc;
+            margin: 20px 0;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Contoh DOM Manipulation Dasar (Pure JS)</h2>
+    <p id="teks-1">Halo semuanya!</p>
+
+    <button onclick="ubahTeks_1()">Ubah Teks</button>
+    <button onclick="ubahWarna_1()">Ubah Warna</button>
+    <button onclick="sembunyikan_1()">Sembunyikan</button>
+    <button onclick="tampilkan_1()">Tampilkan</button>
+
+    <script>
+      function ubahTeks_1() {
+        document.getElementById("teks-1").innerHTML = "Teks sudah diubah!";
+      }
+
+      function ubahWarna_1() {
+        document.getElementById("teks-1").style.color = "red";
+      }
+
+      function sembunyikan_1() {
+        document.getElementById("teks-1").style.display = "none";
+      }
+
+      function tampilkan_1() {
+        document.getElementById("teks-1").style.display = "block";
+      }
+    </script>
+
+    <div class="separator"></div>
+
+    <h2>Contoh DOM Manipulation: List (Pure JS)</h2>
+    <input id="input-2" type="text" placeholder="Isi item" />
+    <button onclick="tambah_2()">Tambah Item</button>
+    <button onclick="hapus_2()">Hapus Terakhir</button>
+
+    <ul id="list-2"></ul>
+
+    <script>
+      function tambah_2() {
+        const teks = document.getElementById("input-2").value;
+        if (!teks) return;
+
+        const li = document.createElement("li");
+        li.innerHTML = teks;
+        document.getElementById("list-2").appendChild(li);
+        document.getElementById("input-2").value = "";
+      }
+
+      function hapus_2() {
+        const list = document.getElementById("list-2");
+        // Pastikan ada elemen sebelum mencoba menghapus
+        if (list.lastElementChild) {
+            list.removeChild(list.lastElementChild);
+        }
+      }
+    </script>
+
+    <div class="separator"></div>
+
+    <h2>Contoh jQuery Dasar: Hide/Show dan Hover</h2>
+    <p class="p-3">Paragraf jQuery 1</p>
+    <p class="p-3">Paragraf jQuery 2</p>
+
+    <button id="hide-3">Hide</button>
+    <button id="show-3">Show</button>
+
+    <script>
+      // Menggunakan ID yang diubah untuk menghindari konflik
+      $(document).ready(function () {
+        $("#hide-3").click(function () {
+          $(".p-3").hide();
+        });
+
+        $("#show-3").click(function () {
+          $(".p-3").show();
+        });
+
+        $(".p-3").hover(
+          function () {
+            $(this).css("color", "blue");
+          },
+          function () {
+            $(this).css("color", "black");
+          }
+        );
+      });
+    </script>
+
+    <div class="separator"></div>
+
+    <h2>Contoh jQuery Efek: Fade dan Slide</h2>
+    <p id="box-4" style="background-color: yellow; padding: 10px;">Ini adalah paragraf efek jQuery.</p>
+
+    <button id="fadeOut-4">Fade Out</button>
+    <button id="fadeIn-4">Fade In</button>
+    <button id="slideUp-4">Slide Up</button>
+    <button id="slideDown-4">Slide Down</button>
+
+    <script>
+      $(function () {
+        $("#fadeOut-4").click(() => $("#box-4").fadeOut());
+        $("#fadeIn-4").click(() => $("#box-4").fadeIn());
+        $("#slideUp-4").click(() => $("#box-4").slideUp());
+        $("#slideDown-4").click(() => $("#box-4").slideDown());
+      });
+    </script>
+
+    <div class="separator"></div>
+
+    <h2>Contoh jQuery Method Chaining</h2>
+    <p id="text-5" style="background-color: lightgreen; padding: 10px;">Contoh method chaining.</p>
+    <button id="run-5">Jalankan Chaining</button>
+
+    <script>
+      $(function () {
+        $("#run-5").click(function () {
+          // Mengubah warna menjadi merah, lalu slideUp selama 2 detik, kemudian slideDown selama 2 detik.
+          $("#text-5").css("color", "red").slideUp(2000).slideDown(2000);
+        });
+      });
+    </script>
+
+</body>
+</html>
