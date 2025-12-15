@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 4 - jQuery Slideshow Fade</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .slideshow-container {
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+        .slide {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+    <h2>jQuery Fade Slideshow</h2>
+
+    <div class="slide active">
+        <img src="pemandangan alam.jpeg" alt="Gambar 1">
+        <p>Gambar 1: Pemandangan Alam</p>
+    </div>
+
+    <div class="slide">
+        <img src="arsitektur kota.jpg" alt="Gambar 2">
+        <p>Gambar 2: Arsitektur Kota</p>
+    </div>
+
+    <div class="slide">
+        <img src="hewan lucu.jpg" alt="Gambar 3">
+        <p>Gambar 3: Hewan Lucu</p>
+    </div>
+
+    <button id="prev-btn">Prev</button>
+    <button id="next-btn">Next</button>
+</div>
+
+<script>
+$(document).ready(function() {
+    let slideIndex = 0;
+    const slides = $(".slide");
+    const totalSlides = slides.length;
+
+    // Fungsi untuk menampilkan slide tertentu
+    function showSlide(n) {
+        // Sembunyikan slide yang saat ini aktif
+        slides.eq(slideIndex).fadeOut(500);
+
+        // Hitung indeks slide baru (looping)
+        slideIndex = (n + totalSlides) % totalSlides;
+
+        // Tampilkan slide baru
+        slides.eq(slideIndex).fadeIn(500);
+    }
+
+    // Tampilkan slide pertama saat inisialisasi
+    showSlide(0);
+
+    // Tombol Next
+    $("#next-btn").click(function() {
+        showSlide(slideIndex + 1);
+    });
+
+    // Tombol Prev
+    $("#prev-btn").click(function() {
+        showSlide(slideIndex - 1);
+    });
+});
+</script>
+
+</body>
+</html>

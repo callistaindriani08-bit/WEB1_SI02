@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 - Dynamic DOM</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+        #foto-profil {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #333;
+        }
+        .info p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="biodata-container" class="container">
+    <h2>Biodata Mahasiswa</h2>
+    <img id="foto-profil" src="calista.jpeg" alt="Foto Profil">
+
+    <div id="biodata-info" class="info">
+        <p>Nama: <span id="nama-display">Callista Nova Indriani</span></p>
+        <p>NIM: <span id="nim-display">0110125038</span></p>
+        <p>Program Studi: <span id="prodi-display">Sistem Informasi</span></p>
+    </div>
+
+    <hr>
+
+    <button id="btn-ubah-nama">Ubah Nama</button>
+    <button id="btn-ubah-prodi">Ubah Program Studi</button>
+    <button id="btn-ganti-foto">Ganti Foto</button>
+    <button id="btn-sembunyi">Sembunyikan Biodata</button>
+    <button id="btn-tampil" style="display: none;">Tampilkan Biodata</button>
+</div>
+
+<script>
+    // --- Variabel DOM ---
+    const namaDisplay = document.getElementById('nama-display');
+    const prodiDisplay = document.getElementById('prodi-display');
+    const fotoProfil = document.getElementById('foto-profil');
+    const biodataContainer = document.getElementById('biodata-container');
+    const btnSembunyi = document.getElementById('btn-sembunyi');
+    const btnTampil = document.getElementById('btn-tampil');
+
+    // --- Event Handlers ---
+
+    // Ubah Nama (innerHTML)
+    document.getElementById('btn-ubah-nama').onclick = function() {
+        const newName = prompt("Masukkan Nama Baru:");
+        if (newName) {
+            namaDisplay.innerHTML = newName;
+        }
+    };
+
+    // Ubah Program Studi (innerHTML)
+    document.getElementById('btn-ubah-prodi').onclick = function() {
+        const newProdi = prompt("Masukkan Program Studi Baru:");
+        if (newProdi) {
+            prodiDisplay.innerHTML = newProdi;
+        }
+    };
+
+    // Ganti Foto (setAttribute)
+    document.getElementById('btn-ganti-foto').onclick = function() {
+        const newPhotoURL = prompt("Masukkan URL Foto Baru (e.g., https://picsum.photos/150):");
+        if (newPhotoURL) {
+            fotoProfil.setAttribute('src', newPhotoURL);
+        }
+    };
+
+    // Sembunyikan Biodata (style)
+    btnSembunyi.onclick = function() {
+        biodataContainer.style.display = 'none';
+        btnSembunyi.style.display = 'none';
+        btnTampil.style.display = 'inline-block';
+    };
+
+    // Tampilkan Biodata (style)
+    btnTampil.onclick = function() {
+        biodataContainer.style.display = 'block';
+        btnSembunyi.style.display = 'inline-block';
+        btnTampil.style.display = 'none';
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 5 - jQuery Method Chaining</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 500px; margin: 50px auto; text-align: center;}
+        #notifikasi {
+            display: none; /* Awalnya disembunyikan */
+            width: 80%;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>jQuery Method Chaining Notification</h2>
+    <button id="tampilkan-notif">Jalankan Notifikasi</button>
+
+    <div id="notifikasi">
+        Notifikasi Penting: Data telah berhasil diperbarui!
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $("#tampilkan-notif").click(function() {
+        // Ambil elemen notifikasi
+        const $notif = $("#notifikasi");
+
+        // RESET elemen ke kondisi awal (penting untuk chaining berulang)
+        $notif.stop(true, true).css({
+            'background-color': '#f8d7da',
+            'display': 'none'
+        });
+
+        // METHOD CHAINING DIMULAI
+        $notif
+            // 1. Ubah warna (CSS)
+            .css('background-color', '#28a745')
+
+            // 2. Fade In (durasi 800ms)
+            .fadeIn(800)
+
+            // 3. Slide Down (durasi 600ms)
+            .slideDown(600)
+
+            // 4. Tunggu 3 detik (3000ms)
+            .delay(3000)
+
+            // 5. Slide Up (durasi 600ms)
+            .slideUp(600)
+
+            // 6. Fade Out (durasi 800ms) - Ketika slideUp selesai, FadeOut akan berjalan
+            .fadeOut(800);
+    });
+});
+</script>
+
+</body>
+</html>

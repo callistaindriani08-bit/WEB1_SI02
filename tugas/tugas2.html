@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2 - To-Do List DOM</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        #todo-input {
+            width: 70%;
+            padding: 10px;
+            margin-right: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #todo-list {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+        #todo-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Daftar Kegiatan (To-Do List)</h2>
+
+    <div>
+        <input type="text" id="todo-input" placeholder="Tambahkan kegiatan baru...">
+        <button id="btn-tambah">Tambah</button>
+    </div>
+
+    <hr>
+
+    <ul id="todo-list">
+        <li>Contoh Tugas 1</li>
+        <li>Contoh Tugas 2</li>
+    </ul>
+
+    <hr>
+
+    <button id="btn-hapus-terakhir">Hapus Terakhir</button>
+</div>
+
+<script>
+    // --- Variabel DOM ---
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+    const btnTambah = document.getElementById('btn-tambah');
+    const btnHapusTerakhir = document.getElementById('btn-hapus-terakhir');
+
+    // --- Fungsi Tambah (createElement, appendChild) ---
+    btnTambah.onclick = function() {
+        const taskText = todoInput.value.trim();
+
+        if (taskText !== "") {
+            // 1. Buat elemen <li> baru
+            const newLi = document.createElement('li');
+
+            // 2. Tambahkan teks ke <li>
+            newLi.textContent = taskText;
+
+            // 3. Tambahkan <li> ke dalam <ul id="todo-list">
+            todoList.appendChild(newLi);
+
+            // Bersihkan input
+            todoInput.value = '';
+        } else {
+            alert("Input tidak boleh kosong!");
+        }
+    };
+
+    // --- Fungsi Hapus Terakhir (removeChild) ---
+    btnHapusTerakhir.onclick = function() {
+        const items = todoList.getElementsByTagName('li');
+
+        if (items.length > 0) {
+            // Dapatkan elemen <li> terakhir
+            const lastItem = items[items.length - 1];
+
+            // Hapus elemen tersebut dari parent (todoList)
+            todoList.removeChild(lastItem);
+        } else {
+            alert("Daftar sudah kosong!");
+        }
+    };
+</script>
+
+</body>
+</html>

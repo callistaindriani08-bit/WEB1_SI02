@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 3 - jQuery FAQ Interaktif</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .faq-container { width: 600px; margin: 50px auto; }
+        .question {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 5px;
+            border-left: 5px solid #ccc;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .answer {
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            display: none; /* Sembunyikan jawaban secara default */
+        }
+        .highlight {
+            background-color: #007bff;
+            color: white;
+            border-left-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="faq-container">
+    <h2>Pertanyaan Umum (FAQ)</h2>
+
+    <div class="faq-item">
+        <div class="question">1. Apa itu jQuery?</div>
+        <div class="answer">jQuery adalah pustaka JavaScript yang cepat, kecil, dan kaya fitur yang membuat hal-hal seperti manipulasi dokumen HTML, penanganan event, animasi, dan Ajax jauh lebih sederhana.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">2. Mengapa menggunakan jQuery?</div>
+        <div class="answer">jQuery menyederhanakan kode JavaScript yang kompleks, meningkatkan kompatibilitas lintas browser, dan memiliki banyak plugin yang tersedia.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">3. Bagaimana cara menyeleksi elemen di jQuery?</div>
+        <div class="answer">jQuery menggunakan sintaks seperti CSS, misalnya: `$("#id-elemen")` untuk ID, `$(".class-elemen")` untuk kelas, atau `$("tag")` untuk tag HTML.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">4. Apa itu HTML DOM?</div>
+        <div class="answer">HTML DOM (Document Object Model) adalah antarmuka pemrograman untuk dokumen HTML. Ini mendefinisikan struktur logis dokumen dan cara mengakses dan memanipulasi dokumen tersebut.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="question">5. Apa bedanya `toggle()` dengan `slideToggle()`?</div>
+        <div class="answer">Keduanya menyembunyikan/menampilkan elemen. `toggle()` langsung mengubah properti `display`, sedangkan `slideToggle()` menyertakan efek animasi sliding.</div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // 1. Klik → tampilkan/sembunyikan jawaban (.click() dan .toggle())
+    $(".question").click(function() {
+        // Cari elemen .answer yang merupakan saudara kandung dari .question yang diklik
+        $(this).next(".answer").toggle();
+    });
+
+    // 2. Hover → warna biru, keluar → kembali normal (.hover())
+    $(".question").hover(
+        function() {
+            // Fungsi ketika mouse masuk (warna biru/highlight)
+            $(this).addClass("highlight");
+        },
+        function() {
+            // Fungsi ketika mouse keluar (kembali normal)
+            $(this).removeClass("highlight");
+        }
+    );
+});
+</script>
+
+</body>
+</html>
